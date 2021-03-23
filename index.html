@@ -48,7 +48,7 @@
       .attr("class", "myYaxis")
 
   function update(selectedVar) {
-    var dataPath= "https://raw.githubusercontent.com/wxk9/opendataviz/main/"+selectedVar+".csv"; 
+    var dataPath= "https://raw.githubusercontent.com/wxk9/opendataviz/main/data/"+selectedVar+".csv"; 
 
 // Parse the Data
     d3.csv(dataPath, function(data) {
