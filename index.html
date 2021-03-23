@@ -23,7 +23,7 @@
 
 <script>
   
-    var margin = {top: 50, right: 30, bottom: 200, left: 100},
+    var margin = {top: 50, right: 30, bottom: 200, left: 120},
     width = 460 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
@@ -62,7 +62,7 @@
     .attr("transform", "translate(-10,0)rotate(-45)")
     .style("text-anchor", "end");
 
-    y.domain([0, 150]);
+    y.domain([0, d3.max(data, function(d) { return +(d['applied']*200) })]);
     yAxis.transition().duration(1000).call(d3.axisLeft(y));
 
   // color palette 
@@ -75,6 +75,7 @@
       .keys(subgroups)
       (data)
 
+  //text box 
     var tooltip = d3.select("body")
       .append("div")
       .style("opacity", 0)
