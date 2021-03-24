@@ -19,13 +19,15 @@
   <button onclick="update('transport_and_storage')">Professional, Scientific And Technical Activities</button>
   <button onclick="update('water_supply')">Water Supply, Sewerage, Waste Management And Remediation Activities</button>
   <button onclick="update('wholesale_and_retail')">Wholesale And Retail Trade; Repair Of Motor Vehicles And Motorcycles</button>
-    <div id="dataviz"></div>
+  <h3>Percentage of industries applied and/or received any initiative during 6 April to 19 April 2020 </h3>
+  <div>Industry: <span id="fieldname"></span></div>
+  <div id="dataviz"></div>
 
 <script>
   
-    var margin = {top: 50, right: 30, bottom: 200, left: 120},
+    var margin = {top: 10, right: 30, bottom: 200, left: 120},
     width = 460 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+    height = 500 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
     var svg = d3.select("#dataviz")
@@ -47,7 +49,45 @@
     var yAxis = svg.append("g")
       .attr("class", "myYaxis")
 
+  function updateTitle(selectedVar){
+
+    var title="";
+
+    if (selectedVar==="all_industries"){
+      title = "All Industries"
+    }else if (selectedVar==="construction"){
+      title = "Constructions"
+    }else if (selectedVar==="manufacturing"){
+      title = "Manufacturing"
+    }else if (selectedVar==="accom_and_food"){
+      title = "Accommodation And Food Service Activities"
+    }else if (selectedVar==="admin_and_support"){
+      title = "Administrative And Support Service Activities"
+    }else if (selectedVar==="arts_entertainment"){
+      title = "Arts, Entertainment And Recreation"
+    }else if (selectedVar==="education"){
+      title = "Education"
+    }else if (selectedVar==="human_health"){
+      title = "Human Health And Social Work Activities"
+    }else if (selectedVar==="info_and_comm"){
+      title = "Information And Communication"
+    }else if (selectedVar==="prof_sci_tech"){
+      title = "Professional, Scientific And Technical Activities"
+    }else if (selectedVar==="transport_and_storage"){
+      title = "Transportation And Storage"
+    }else if (selectedVar==="water_supply"){
+      title = "Water Supply, Sewerage, Waste Management And Remediation Activities"
+    }else if (selectedVar==="wholesale_and_retail"){
+      title = "Wholesale And Retail Trade; Repair Of Motor Vehicles And Motorcycles"
+    }
+
+    return title;
+  }
+
   function update(selectedVar) {
+    
+    document.getElementById("fieldname").innerHTML = updateTitle(selectedVar);
+
     var dataPath= "https://raw.githubusercontent.com/wxk9/opendataviz/main/data/"+selectedVar+".csv"; 
 
 // Parse the Data
